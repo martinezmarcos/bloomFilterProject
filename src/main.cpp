@@ -1,24 +1,23 @@
 #include "bloomFilter.h"
-#include <iostream> 
-#include <string> 
+#include <iostream>
+#include <string>
 
-int main() { 
-    int expectedElements = 1000; 
-    double targetFpp = 0.01;  
+int main() {
+    int expectedElements = 1000;
+    double targetFpp = 0.01; 
+    
+    BloomFilter bloomFilter(expectedElements, targetFpp);
 
-    BloomFilter bloomFilter(expectedElements, targetFpp); 
+    bloomFilter.insertItem("usuario1@email.com");
+    bloomFilter.insertItem("usuario2@email.com");
+    bloomFilter.insertItem("usuario3@email.com");
 
-    bloomFilter.insertItem("usuario1@gmail.com"); 
-    bloomFilter.insertItem("usuario2@gmail.com"); 
-    bloomFilter.insertItem("usuario3@gmail.com"); 
+    std::cout << std::boolalpha;
+    std::cout << "Check 'usuario1@email.com': " << bloomFilter.checkItem("usuario1@email.com") << "\n";
+    std::cout << "Check 'desconocido@email.com': " << bloomFilter.checkItem("desconocido@email.com") << "\n";
 
-    std::cout << std::boolalpha; 
-    std::cout << "Check 'usuario1@gmail.com' " << bloomFilter.checkItem("usuario1@gmail.com") << "\n"; 
-    std::cout << "Check 'desconocido@gmail.com' " << bloomFilter.checkItem("desconocido@gmail.com") << "\n"; 
-
-    int currentInserted = 3; 
-    std::cout << "FPP: " << bloomFilter.getFalsePositiveProbabilty(currentInserted) << "\n"; 
+    int currentInserted = 3;
+    std::cout << "FPP: " << bloomFilter.getFalsePositiveProbability(currentInserted) << "\n";
 
     return 0;
-
 }
