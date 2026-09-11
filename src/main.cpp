@@ -20,4 +20,5 @@ int main() {
     std::cout << "FPP: " << bloomFilter.getFalsePositiveProbability(currentInserted) << "\n";
 
     return 0;
-}
+} 
+
